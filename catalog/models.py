@@ -60,6 +60,12 @@ class Book(models.Model):
 
         return reverse("book-detail", args=[str(self.pk)])
 
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ", ".join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = "Genre"
+
 
 class BookInstance(models.Model):
     """Model representing a specific copy of a book"""
@@ -100,8 +106,15 @@ class Author(models.Model):
 
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    date_of_birth = models.DateField(null=True, blank=True)
-    date_of_death = models.DateField("Died", null=True, blank=True)
+    date_of_birth = models.DateField(
+        null=True, blank=True, help_text="The date should be of format YYYY-MM-DD"
+    )
+    date_of_death = models.DateField(
+        "Died",
+        null=True,
+        blank=True,
+        help_text="The date should be of format YYYY-MM-DD",
+    )
 
     class Meta:
         ordering = ["last_name", "first_name"]
