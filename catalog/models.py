@@ -4,6 +4,8 @@ import uuid
 from django.db import models
 from django.urls import reverse
 from django.db.models.functions import Lower
+from django.conf import settings
+from datetime import date
 
 
 class Genre(models.Model):
@@ -94,8 +96,19 @@ class BookInstance(models.Model):
         help_text="Book availability",
     )
 
+    borrower = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True
+    )
+
+    @property
+    def is_overdue(self):
+        """Verify whether due_back is empty and compare it with today's date"""
+        return bool(self.due_back and date.today() > self.due_back)
+
     class Meta:
         ordering = ["-due_back"]
+        permissions = (("can_mark_returned", "Set book as returned"),)
+
 
     def __str__(self) -> str:
         return f"{self.id} ({self.book.title})"
