@@ -61,13 +61,13 @@
           <li><a href="{% url 'genre-create' %}">Create genre</a></li>
           {% endif %}
           {% if perms.catalog.add_language %}
-            <li><a href="{% url 'language-create' %}">Create language</a></li>
+          <li><a href="{% url 'language-create' %}">Create language</a></li>
           {% endif %}
           {% if perms.catalog.add_book %}
           <li><a href="{% url 'book-create' %}">Create book</a></li>
           {% endif %}
           {% if perms.catalog.add_bookinstance %}
-            <li><a href="{% url 'bookinstance-create' %}">Create copy of book</a></li>
+          <li><a href="{% url 'bookinstance-create' %}">Create copy of book</a></li>
           {% endif %}
         </ul>
         {% endif %}
@@ -83,13 +83,13 @@
         <div class="pagination">
           <span class="page-links">
             {% if page_obj.has_previous %}
-              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
             <span class="page-current">
               Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
             </span>
             {% if page_obj.has_next %}
-              <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
             {% endif %}
           </span>
         </div>
