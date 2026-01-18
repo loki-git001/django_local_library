@@ -80,3 +80,9 @@ urlpatterns += [
         name="bookinstance-delete",
     ),
 ]
+
+# API URLs
+urlpatterns += [
+    path("api/authors/", views.author_list, name="api-author-list"),
+    path("api/authors/<int:pk>/", views.author_detail, name="api-author-detail"),
+]
