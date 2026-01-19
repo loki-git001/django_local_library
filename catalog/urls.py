@@ -81,8 +81,16 @@ urlpatterns += [
     ),
 ]
 
+from rest_framework.urlpatterns import format_suffix_patterns
+
 # API URLs
-urlpatterns += [
-    path("api/authors/", views.author_list, name="api-author-list"),
-    path("api/authors/<int:pk>/", views.author_detail, name="api-author-detail"),
+api_urlpatterns = [
+    path("api/authors/", views.AuthorList.as_view(), name="api-author-list"),
+    path("api/authors/<int:pk>/", views.AuthorDetail.as_view(), name="api-author-detail"),
+    path("api/genres/", views.GenreList.as_view(), name="api-genre-list"),
+    path("api/genres/<int:pk>/", views.GenreDetail.as_view(), name="api-genre-detail"),
+    path("api/languages/", views.LanguageList.as_view(), name="api-language-list"),
+    path("api/languages/<int:pk>/", views.LanguageDetail.as_view(), name="api-language-detail"),
 ]
+
+urlpatterns += format_suffix_patterns(api_urlpatterns)
