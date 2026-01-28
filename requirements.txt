@@ -5,6 +5,11 @@ djangorestframework==3.16.1
 librt==0.7.7
 mypy_extensions==1.1.0
 pathspec==0.12.1
+<<<<<<< Updated upstream
+=======
+
+psycopg2-binary==2.9.11
+>>>>>>> Stashed changes
 Pygments==2.19.2
 sqlparse==0.5.5
 types-PyYAML==6.0.12.20250915
