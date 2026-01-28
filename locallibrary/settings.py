@@ -122,4 +122,28 @@ STATIC_URL = "static/"
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# SECURITY SETTINGS
+# Only apply these in production to avoid breaking local development
+if os.environ.get("DJANGO_ENV") == "production":
+    DEBUG = False
+
+    # Security: HTTPS & Cookies
+    # SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    # Security: HSTS (HTTP Strict Transport Security)
+    # SECURE_HSTS_SECONDS = 31536000  # 1 year
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_PRELOAD = True
+
+    # Security: Trust the Load Balancer's SSL
+    # Required for Elastic Beanstalk because the LB handles SSL, not Django directly
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+    # Secret Key: Load from Environment
+    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", SECRET_KEY)
