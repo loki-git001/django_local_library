@@ -212,3 +212,8 @@ __marimo__/
 # Database
 *.sqlite3
 
+
+# Django static files
+staticfiles/
+
+
