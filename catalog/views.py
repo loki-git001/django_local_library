@@ -321,32 +321,38 @@ class BookInstanceDelete(PermissionRequiredMixin, DeleteView):
 
 
 from .serializers import AuthorSerializer, GenreSerializer, LanguageSerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 # Author API
 class AuthorList(generics.ListCreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class AuthorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 # Genre API
 class GenreList(generics.ListCreateAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class GenreDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 # Language API
 class LanguageList(generics.ListCreateAPIView):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class LanguageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
