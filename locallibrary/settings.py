@@ -145,14 +145,15 @@ if os.environ.get("DJANGO_ENV") == "production":
     DEBUG = False
 
     # Security: HTTPS & Cookies
-    SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
     # Security: HSTS (HTTP Strict Transport Security)
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
+    # SECURE_HSTS_SECONDS = 31536000  # 1 year
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_PRELOAD = True
 
     # Security: Trust the Load Balancer's SSL
     # Required for Elastic Beanstalk because the LB handles SSL, not Django directly
