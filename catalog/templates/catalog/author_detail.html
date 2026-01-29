@@ -9,7 +9,7 @@
     {% if perms.catalog.change_author %}
       <li><a href="{% url 'author-update' author.id %}">Update author</a></li>
     {% endif %}
-    {% if not author.book_set.all and perms.catalog.delete_author %}
+    {% if perms.catalog.delete_author %}
       <li><a href="{% url 'author-delete' author.id %}">Delete author</a></li>
     {% endif %}
     </ul>
