@@ -131,13 +131,16 @@ if os.environ.get("DJANGO_ENV") == "production":
     DEBUG = False
 
     # Security: HTTPS & Cookies
-    # SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True  <-- DISABLED for now (needs SSL cert)
     SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = False # DISABLED for HTTP
+    CSRF_COOKIE_SECURE = False    # DISABLED for HTTP
+
+    # Required for Django 4.0+ to trust the Elastic Beanstalk domain
+    CSRF_TRUSTED_ORIGINS = ["http://*.elasticbeanstalk.com", "https://*.elasticbeanstalk.com"]
 
     # Security: HSTS (HTTP Strict Transport Security)
-    # SECURE_HSTS_SECONDS = 31536000  # 1 year
+    # SECURE_HSTS_SECONDS = 31536000  <-- DISABLED for now
     # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     # SECURE_HSTS_PRELOAD = True
 
