@@ -29,7 +29,7 @@
     {% if perms.catalog.change_genre %}
     <li><a href="{% url 'genre-update' genre.id %}">Update Genre</a></li>
     {% endif %}
-    {% if not genre.book_set.all and perms.catalog.delete_genre %}
+    {% if perms.catalog.delete_genre %}
       <li><a href="{% url 'genre-delete' genre.id %}">Delete Genre</a></li>
     {% endif %}
     </ul>

@@ -111,6 +111,9 @@ class BookInstance(models.Model):
 
     def __str__(self) -> str:
         return f"{self.id} ({self.book.title})"
+    
+    def get_absolute_url(self):
+        return reverse("bookinstance-detail", args=[str(self.pk)])
 
 
 class Author(models.Model):

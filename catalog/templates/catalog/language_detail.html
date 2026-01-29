@@ -29,7 +29,7 @@
     {% if perms.catalog.change_language %}
       <li><a href="{% url 'language-update' language.id %}">Update Language</a></li>
     {% endif %}
-    {% if not language.book_set.all and perms.catalog.delete_language %}
+    {% if perms.catalog.delete_language %}
       <li><a href="{% url 'language-delete' language.id %}">Delete Language</a></li>
     {% endif %}
     </ul>
