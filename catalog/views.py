@@ -356,3 +356,20 @@ class LanguageDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = LanguageSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+
+# Registration View
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+def register(request):
+    """View function for user registration."""
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        form = UserCreationForm()
+    
+    return render(request, "registration/register.html", {"form": form})
